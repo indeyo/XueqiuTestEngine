@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 
 def exception_handle(func):
     def magic(*args, **kwargs):
-        # 互相调用
+        # 循环调用
         from pages.base_page import BasePage
         instance: BasePage = args[0]
         try:
@@ -38,4 +38,6 @@ def exception_handle(func):
                         return magic(*args, **kwargs)
             logging.warning("no error is found")
             raise e
+            # todo：socket hang up 问题是否可以捕获到？捕获到有没有办法自动重启？打开cmd并执行命令？
+            # instance._driver
     return magic

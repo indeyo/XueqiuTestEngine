@@ -47,10 +47,10 @@ class BasePage:
         # else:
         #     return self._driver.find_element(locator, key)
 
-    @exception_handle
     def find_by_text(self, text):
         return self.find(By.XPATH, '//*[@text="%s"]' % text)
 
+    @exception_handle
     def find_elements_and_get_text(self, locator, key=None):
         if not isinstance(locator, tuple):
             locator = (locator, key)
@@ -60,3 +60,7 @@ class BasePage:
         for element in self._driver.find_elements(*locator):
             elements.append(element.text)
         return elements
+
+    def find_element_and_get_text(self, locator, key=None):
+        return self.find(locator, key).text
+
