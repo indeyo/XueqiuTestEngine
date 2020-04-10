@@ -61,7 +61,7 @@ class Web(BasePage):
             self._driver.implicitly_wait(10)
         return self
 
-    def index(self):
+    def index_page(self):
         return IndexPage(self._driver)
 
     def save_cookies(self):

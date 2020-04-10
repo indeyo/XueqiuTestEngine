@@ -41,7 +41,7 @@ class BasePage:
         if not isinstance(locator, tuple):
             locator = (locator, key)
         # todo：显示等待改写成装饰器
-        WebDriverWait(self._driver, 5).until(expected_conditions.visibility_of_element_located(locator))
+        WebDriverWait(self._driver, 5).until(expected_conditions.element_to_be_clickable(locator))
         return self._driver.find_element(*locator)
         # if isinstance(locator, tuple):
         #     return self._driver.find_element(*locator)
@@ -64,4 +64,8 @@ class BasePage:
 
     def find_element_and_get_text(self, locator, key=None):
         return self.find(locator, key).text
+
+    def switch_window(self):
+        windows = self._driver.window_handles
+        self._driver.switch_to.window(windows[-1])
 

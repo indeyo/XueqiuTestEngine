@@ -9,14 +9,21 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
+from pages.web_pages.stock import StockPage
 
 
 class IndexPage(BasePage):
     _base_url = "https://xueqiu.com/"
     _search_locator = (By.CSS_SELECTOR, "[placeholder='搜索']")
 
-    def search(self):
-        self.find()
+    def search(self, key, stock_type):
+        self.find(self._search_locator).send_keys(key)
+        # 调试用
+        # print(self._driver.window_handles)
+        self.find(By.PARTIAL_LINK_TEXT, stock_type).click()
+        # print(self._driver.window_handles)
+        self.switch_window()
+        return StockPage(self._driver)
 
     def goto_trade_funds(self):
         pass
