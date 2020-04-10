@@ -9,7 +9,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
-from pages.search import SearchPage
+from pages.app_pages.search import SearchPage
 
 
 class MainPage(BasePage):
@@ -26,7 +26,7 @@ class MainPage(BasePage):
 
     def goto_quotations(self):
         # 解决循环调用问题
-        from pages.quotations import QuotationsPage
+        from pages.app_pages.quotations import QuotationsPage
         self.find_by_text("行情").click()
         return QuotationsPage(self._driver)
 

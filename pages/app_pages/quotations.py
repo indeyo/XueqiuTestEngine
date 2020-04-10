@@ -9,9 +9,9 @@
 from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
-from pages.main import MainPage
-from pages.message import MessagePage
-from pages.search import SearchPage
+from pages.app_pages.main import MainPage
+from pages.app_pages.message import MessagePage
+from pages.app_pages.search import SearchPage
 
 
 class QuotationsPage(BasePage):

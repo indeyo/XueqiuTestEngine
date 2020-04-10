@@ -9,7 +9,7 @@
 from appium import webdriver
 
 from pages.base_page import BasePage
-from pages.main import MainPage
+from pages.app_pages.main import MainPage
 
 
 class App(BasePage):

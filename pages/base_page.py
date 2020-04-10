@@ -28,6 +28,7 @@ class BasePage:
         (By.XPATH, "//*[@text='下次再说']"),
         (By.XPATH, "//*[@text='allow']")
     ]
+    _base_url = ""
 
     def __init__(self, driver: WebDriver = None):
         self._driver = driver
