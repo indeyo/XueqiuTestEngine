@@ -74,6 +74,6 @@ class Web(BasePage):
     def check_if_login(self):
         return self.find_element_and_get_text(self._send_text_locator)
 
-    def quit(self):
-        sleep(20)
-        self._driver.quit()
+    # def quit(self):
+    #     sleep(20)
+    #     self._driver.quit()

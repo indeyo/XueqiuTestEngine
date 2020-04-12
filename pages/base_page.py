@@ -7,6 +7,7 @@
 @Author  : indeyo_lin
 """
 import logging
+from time import sleep
 
 from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -65,7 +66,21 @@ class BasePage:
     def find_element_and_get_text(self, locator, key=None):
         return self.find(locator, key).text
 
-    def switch_window(self):
+    def switch_to_window(self):
         windows = self._driver.window_handles
         self._driver.switch_to.window(windows[-1])
 
+    def switch_to_alert_and_get_text(self):
+        # 等待弹窗出现
+        WebDriverWait(self._driver, 10).until(expected_conditions.alert_is_present())
+        # 切换到弹窗
+        alert = self._driver.switch_to.alert
+        # 保存弹簧内容，用于断言
+        text = alert.text
+        # 点击弹窗 确认 按钮
+        alert.accept()
+        return text
+
+    def quit(self):
+        sleep(15)
+        self._driver.quit()
