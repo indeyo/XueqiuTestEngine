@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
 from pages.web_pages.funds import FundsPage
+from pages.web_pages.hq_center import HQCenterPage
 from pages.web_pages.stock import StockPage
 
 
@@ -18,6 +19,8 @@ class IndexPage(BasePage):
     _search_locator = (By.CSS_SELECTOR, "[placeholder='搜索']")
     _funds_locator = (By.CSS_SELECTOR, ".nav__menu>div:nth-child(5) a:nth-child(3)")
     _trade_locator = (By.CSS_SELECTOR, ".nav__menu>div:nth-child(5)")
+    _hq_locator = (By.CSS_SELECTOR, ".nav__menu>div:nth-child(4)")
+    _hq_center_locator = (By.CSS_SELECTOR, ".nav__menu>div:nth-child(4) a:nth-child(1)")
 
     def search(self, key, stock_type):
         self.find(self._search_locator).send_keys(key)
@@ -38,5 +41,9 @@ class IndexPage(BasePage):
         self.switch_to_window()
         return FundsPage(self._driver)
 
-    def goto_quotations(self):
-        pass
+    def goto_hq_center(self):
+        self.find(self._hq_locator).click()
+        self.find(self._hq_center_locator).click()
+        return HQCenterPage(self._driver)
+
+
